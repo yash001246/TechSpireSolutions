@@ -12,10 +12,10 @@ export default function Footer() {
           <h4>Explore</h4>
           <Link to="/work">Work</Link>
           <Link to="/services">Services</Link>
-          <Link to="/product">Product</Link>
+          <Link to="/portfolio">Portfolio</Link>
           <Link to="/process">Process</Link>
           <Link to="/about">About</Link>
-          <Link to="/feedback">Feedback</Link>
+          <Link to="/testimonials">Testimonials</Link>
           <Link to="/contact">Contact</Link>
         </div>
         <div className="footer-col">

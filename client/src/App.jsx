@@ -7,11 +7,11 @@ import useScrollReveal from './hooks/useScrollReveal.js';
 import Home from './pages/Home.jsx';
 import Work from './pages/Work.jsx';
 import Services from './pages/Services.jsx';
-import Product from './pages/Product.jsx';
+import Portfolio from './pages/Portfolio.jsx';
 import Process from './pages/Process.jsx';
 import Contact from './pages/Contact.jsx';
 import About from './pages/About.jsx';
-import Feedback from './pages/Feedback.jsx';
+import Testimonials from './pages/Testimonials.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -27,16 +27,15 @@ export default function App() {
       <Cursor />
       <Navbar />
       <main>
-        {/* The key restarts the page-in animation on every route change. */}
         <div key={pathname} className="page">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/product" element={<Product />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/process" element={<Process />} />
             <Route path="/about" element={<About />} />
-            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

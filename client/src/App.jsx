@@ -13,6 +13,7 @@ import Contact from './pages/Contact.jsx';
 import About from './pages/About.jsx';
 import Testimonials from './pages/Testimonials.jsx';
 import NotFound from './pages/NotFound.jsx';
+import WhatsAppButton from './components/WhatsAppButton.jsx';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -42,6 +43,8 @@ export default function App() {
         </div>
       </main>
       <Footer />
+      <Footer />
+      <WhatsAppButton />
     </>
   );
 }

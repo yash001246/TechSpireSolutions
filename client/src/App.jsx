@@ -43,7 +43,6 @@ export default function App() {
         </div>
       </main>
       <Footer />
-      <Footer />
       <WhatsAppButton />
     </>
   );

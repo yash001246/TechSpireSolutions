@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className="navbar">
       <div className="container navbar-inner">
         <Link to="/" className="logo" onClick={() => setOpen(false)}>
-          <span className="logo-mark" aria-hidden="true" />
+          <img className="logo-img" src="/logo.png" alt="" width="44" height="44" />
           TechSpire
         </Link>
         <button

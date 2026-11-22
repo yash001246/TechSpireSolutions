@@ -5,6 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-col wide">
+          <img className="footer-logo" src="/logo-on-white.png" alt="TechSpire Solutions logo" width="72" height="72" />
           <div className="footer-brand">TechSpire Solutions</div>
           <p>We create software, brands and platforms that help teams reach higher.</p>
         </div>

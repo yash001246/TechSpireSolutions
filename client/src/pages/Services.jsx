@@ -1,16 +1,15 @@
+import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader.jsx';
 import CallToAction from '../components/CallToAction.jsx';
-import { serviceGroups, stack } from '../data/services.js';
+import { serviceGroups, services, stack } from '../data/services.js';
 
 export default function Services() {
-  const total = serviceGroups.reduce((sum, g) => sum + g.items.length, 0);
-
   return (
     <>
       <PageHeader
         eyebrow="Services"
-        title={`${total} services. One team.`}
-        intro="Complete digital solutions under one roof: development, design and marketing, with 24/7 support after launch."
+        title={`${services.length} services. One team.`}
+        intro="Complete digital solutions under one roof: development, design and marketing, with 24/7 support after launch. Open any service to see what is included."
       />
 
       <section className="section white">
@@ -22,11 +21,17 @@ export default function Services() {
                 <p>{g.text}</p>
                 <div className="plan-length service-count">{g.items.length} services</div>
               </div>
-              <ul className="ticks">
-                {g.items.map((i) => (
-                  <li key={i}>{i}</li>
+              <div className="svc-list">
+                {g.items.map((s) => (
+                  <Link key={s.slug} to={`/services/${s.slug}`} className="svc-item">
+                    <span className="svc-text">
+                      <span className="svc-name">{s.name}</span>
+                      <span className="svc-summary">{s.summary}</span>
+                    </span>
+                    <span className="svc-arrow" aria-hidden="true">&rarr;</span>
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>

@@ -10,6 +10,13 @@ import company, { reasons } from '../data/company.js';
 import { serviceGroups } from '../data/services.js';
 
 const heroWords = ['We', 'build', 'tech', 'that', 'climbs.'];
+const heroLinks = [
+  { label: 'Web', to: '/services/web-development' },
+  { label: 'Mobile apps', to: '/services/mobile-app-development' },
+  { label: 'Cloud', to: '/services/cloud-devops' },
+  { label: 'UI/UX', to: '/services/ui-ux-design' },
+  { label: 'SEO', to: '/services/seo-optimization' }
+];
 
 export default function Home() {
   const { projects } = useProjects();
@@ -37,11 +44,15 @@ export default function Home() {
   return (
     <>
       <section className="hero" ref={heroRef}>
-        <div className="container hero-inner">
-          <div className="eyebrow">{company.tagline}</div>
+        <div className="container hero-grid">
+        <div className="hero-inner">
+          <div className="eyebrow hero-eyebrow">
+            <span className="live-dot" aria-hidden="true" />
+            {company.tagline}
+          </div>
           <h1 className="hero-title" aria-label="We build tech that climbs.">
             {heroWords.map((word, i) => (
-              <span key={word} className="word" aria-hidden="true">
+              <span key={word} className={`word${i === heroWords.length - 1 ? ' accent' : ''}`} aria-hidden="true">
                 <span style={{ animationDelay: `${180 + i * 100}ms` }}>{word}</span>
               </span>
             ))}
@@ -51,14 +62,51 @@ export default function Home() {
             to businesses of all sizes.
           </p>
           <div className="btn-row">
-            <Link to="/services" className="btn btn-dark">Our services</Link>
+            <Link to="/services" className="btn btn-dark btn-arrow">Our services <span aria-hidden="true">&rarr;</span></Link>
             <Link to="/contact" className="btn btn-outline">Start a project</Link>
           </div>
+
+          <div className="hero-popular">
+            <span className="hero-popular-label">Popular</span>
+            {heroLinks.map((l) => (
+              <Link key={l.to} to={l.to} className="hero-pill">{l.label}</Link>
+            ))}
+          </div>
+
+          <div className="hero-stats">
+            {company.stats.slice(0, 3).map((s) => (
+              <div key={s.label} className="hero-stat">
+                <strong>{s.value}</strong>
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
+
+        <div className="hero-media">
+          <video
+            className="hero-video"
+            src="/hero.mp4"
+            poster="/hero-poster.jpeg"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            aria-label="Illustration of the TechSpire team building web, cloud and marketing solutions"
+          />
+        </div>
+      </div>
+
         <div className="hero-art" aria-hidden="true">
           <span className="tri t1" />
           <span className="tri t2" />
           <span className="tri t3" />
+        </div>
+
+        <div className="scroll-cue" aria-hidden="true">
+          <span className="scroll-line" />
+          Scroll
         </div>
       </section>
 

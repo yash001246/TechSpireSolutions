@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 
 const links = [
   { to: '/work', label: 'Work' },
@@ -13,13 +13,22 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
   return (
     <header className="navbar">
+      {/* key={pathname} remounts these on every page change, so the reveal replays */}
+      <span key={pathname} className="nav-curtain" aria-hidden="true" />
       <div className="container navbar-inner">
-        <Link to="/" className="logo" onClick={() => setOpen(false)}>
+        <Link
+          key={`logo-${pathname}`}
+          to="/"
+          className="logo"
+          style={{ '--i': 0 }}
+          onClick={() => setOpen(false)}
+        >
           <img className="logo-img" src="/logo.png" alt="" width="44" height="44" />
-          TechSpire
+          <span className="mask"><span className="mask-in">TechSpire</span></span>
         </Link>
         <button
           className="menu-toggle"
@@ -30,14 +39,15 @@ export default function Navbar() {
           {open ? 'Close' : 'Menu'}
         </button>
         <nav id="site-nav" className={open ? 'nav open' : 'nav'}>
-          {links.map((l) => (
+          {links.map((l, i) => (
             <NavLink
-              key={l.to}
+              key={`${l.to}-${pathname}`}
               to={l.to}
+              style={{ '--i': i + 1 }}
               className={({ isActive }) => (isActive ? 'active' : '')}
               onClick={() => setOpen(false)}
             >
-              {l.label}
+              <span className="mask"><span className="mask-in">{l.label}</span></span>
             </NavLink>
           ))}
         </nav>

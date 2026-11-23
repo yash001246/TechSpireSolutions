@@ -9,7 +9,9 @@ const feedbackSchema = new mongoose.Schema(
     rating: { type: Number, required: true, min: 1, max: 5 },
     quote: { type: String, required: true, trim: true, maxlength: 1500 },
     // New submissions stay hidden until you approve them (set approved: true in MongoDB).
-    approved: { type: Boolean, default: false }
+    approved: { type: Boolean, default: false },
+    // true for entries loaded by `npm run seed`, so re-seeding never touches real submissions.
+    seed: { type: Boolean, default: false }
   },
   { timestamps: true }
 );

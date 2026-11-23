@@ -5,7 +5,7 @@ import useFeedback from '../hooks/useFeedback.js';
 
 const initial = { name: '', role: '', company: '', project: '', rating: 0, quote: '' };
 
-export default function Feedback() {
+export default function Testimonials() {
   const feedback = useFeedback();
   const [form, setForm] = useState(initial);
   const [hover, setHover] = useState(0);
@@ -42,9 +42,9 @@ export default function Feedback() {
   return (
     <>
       <PageHeader
-        eyebrow="Client feedback"
+        eyebrow="Testimonials"
         title="What our clients say."
-        intro="We ask every client for honest feedback at the end of a project. Here is what they told us. The entries shown now are samples. Replace them with real reviews."
+        intro="We ask every client for honest feedback at the end of a project. Here is what they told us."
       />
 
       <section className="section white">

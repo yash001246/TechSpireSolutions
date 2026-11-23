@@ -1,14 +1,8 @@
 import { useState } from 'react';
 import PageHeader from '../components/PageHeader.jsx';
+import company from '../data/company.js';
 
 const initial = { name: '', email: '', company: '', topic: 'project', budget: '', message: '' };
-
-const channels = [
-  { label: 'Want to collaborate?', title: 'Work with us', email: 'office@techspiresolutions.in' },
-  { label: 'Want to say hi?', title: 'General inquiries', email: 'office@techspiresolutions.in' },
-  { label: 'Want to join us?', title: 'Careers', email: 'career@techspiresolutions.in' },
-  { label: 'Want to learn?', title: 'Internships', email: 'career@techspiresolutions.in' }
-];
 
 export default function Contact() {
   const [form, setForm] = useState(initial);
@@ -37,9 +31,9 @@ export default function Contact() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Tell us what you want to build."
-        intro="Share a few details and we will reply within two working days."
+        eyebrow="Contact us"
+        title="Let's connect and build something amazing together."
+        intro={`${company.motto} Send us a message and we will get back to you.`}
       />
 
       <section className="section white">
@@ -93,17 +87,30 @@ export default function Contact() {
           </form>
 
           <div className="channels">
-            {channels.map((c) => (
-              <div key={c.title} className="channel">
-                <div className="muted">{c.label}</div>
-                <h3>{c.title}</h3>
-                <a href={`mailto:${c.email}`}>{c.email}</a>
-              </div>
-            ))}
             <div className="channel">
-              <div className="muted">Visit us</div>
-              <h3>Studio</h3>
-              <p>Lucknow, India<br />7007387337</p>
+              <div className="muted">Email</div>
+              <h3>Write to us</h3>
+              <a href={`mailto:${company.email}`}>{company.email}</a>
+            </div>
+            <div className="channel">
+              <div className="muted">Phone</div>
+              <h3>Call us</h3>
+              <a href={company.phoneLink}>{company.phone}</a>
+            </div>
+            <div className="channel">
+              <div className="muted">Website</div>
+              <h3>Visit online</h3>
+              <a href={company.websiteUrl} target="_blank" rel="noopener noreferrer">{company.website}</a>
+            </div>
+            <div className="channel">
+              <div className="muted">Address</div>
+              <h3>Where we work</h3>
+              <p>{company.address}</p>
+            </div>
+            <div className="channel">
+              <div className="muted">Support</div>
+              <h3>Always here</h3>
+              <p>{company.support}</p>
             </div>
           </div>
         </div>

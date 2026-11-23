@@ -10,10 +10,10 @@ const feedback = require('./data/feedback');
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/techspire');
     await Project.deleteMany({});
     await Project.insertMany(projects);
-    // Only replace the sample feedback, so real reviews submitted later are kept.
-    await Feedback.deleteMany({ name: /^Sample Client/ });
+    // Replace only seeded entries (and the old "Sample Client" ones), so real submissions are kept.
+    await Feedback.deleteMany({ $or: [{ seed: true }, { name: /^Sample Client/ }] });
     await Feedback.insertMany(feedback);
-    console.log(`Seeded ${projects.length} projects and ${feedback.length} sample feedback entries.`);
+    console.log(`Seeded ${projects.length} projects and ${feedback.length} testimonials.`);
   } catch (err) {
     console.error('Seeding failed:', err.message);
     process.exitCode = 1;

@@ -2,37 +2,43 @@ import PageHeader from '../components/PageHeader.jsx';
 import CallToAction from '../components/CallToAction.jsx';
 
 const steps = [
-  {
-    title: 'Discover',
-    time: 'Weeks 1 to 2',
-    text: 'We run workshops and interviews to pin down the problem, the users and what success looks like.',
-    outputs: ['Project brief', 'User insights', 'Scope and priorities']
-  },
-  {
-    title: 'Design',
-    time: 'Weeks 3 to 5',
-    text: 'We build clickable prototypes and test them with real people before any code is written.',
-    outputs: ['Prototype', 'Usability findings', 'Visual design and components']
-  },
-  {
-    title: 'Build',
-    time: 'Weeks 6 to 14',
-    text: 'We work in two-week sprints, with a working demo at the end of each one.',
-    outputs: ['Working software every sprint', 'Automated tests', 'Staging environment']
-  },
-  {
-    title: 'Launch and grow',
-    time: 'Week 15 onward',
-    text: 'We release, monitor, learn from usage and keep improving with support from the same team.',
-    outputs: ['Production launch', 'Analytics and monitoring', 'Improvement roadmap']
-  }
+  { title: 'Requirement analysis', text: 'Understanding client goals, target audience and business needs.' },
+  { title: 'Strategy and planning', text: 'Creating a structured roadmap with timelines and milestones.' },
+  { title: 'Design and development', text: 'Building high-performance, user-friendly and scalable solutions.' },
+  { title: 'Testing and QA', text: 'Ensuring security, speed and flawless functionality.' },
+  { title: 'Deployment and launch', text: 'Smooth project delivery with proper configuration.' },
+  { title: 'Maintenance and support', text: '24/7 monitoring, updates and long-term support.' }
 ];
 
 const faqs = [
-  { q: 'How long does a typical project take?', a: 'Most websites take 6 to 10 weeks. Apps and platforms usually take 3 to 6 months.' },
-  { q: 'How do you price projects?', a: 'We quote a fixed price for clearly scoped work and a monthly rate for ongoing team engagements.' },
-  { q: 'Can we change direction mid-project?', a: 'Yes. Sprints are short, so priorities can change between them without losing work.' },
-  { q: 'Who owns the code?', a: 'You do. Everything we build for you is handed over with full documentation.' }
+  {
+    q: 'What services does TechSpire Solutions offer?',
+    a: 'We provide end-to-end IT services including software development, web and mobile app development, cloud solutions and digital transformation services tailored to business needs.'
+  },
+  {
+    q: 'How do you ensure project quality?',
+    a: 'We follow agile methodology, conduct regular testing and maintain continuous client communication to ensure high-quality and timely delivery.'
+  },
+  {
+    q: 'What is your project timeline?',
+    a: 'Timelines depend on project complexity, but we ensure clear milestones and timely delivery with regular progress updates.'
+  },
+  {
+    q: 'What technologies do you work with?',
+    a: 'We work with modern technologies like React, Node.js, Python, Java, cloud platforms (AWS/Azure) and more.'
+  },
+  {
+    q: 'How do you handle client requirements?',
+    a: 'We start with requirement analysis to understand your goals, audience and business needs, then agree on a roadmap with timelines and milestones before development begins.'
+  },
+  {
+    q: 'What about pricing?',
+    a: 'Our pricing is flexible and depends on project scope, features and duration. We offer cost-effective solutions without compromising quality.'
+  },
+  {
+    q: 'Do you provide support after delivery?',
+    a: 'Yes, we offer post-deployment support, maintenance and updates to ensure smooth performance.'
+  }
 ];
 
 export default function Process() {
@@ -41,7 +47,7 @@ export default function Process() {
       <PageHeader
         eyebrow="Process"
         title="A clear path from first call to launch."
-        intro="Every project follows four stages. You always know what is happening, what is next and what you will get."
+        intro="Every project follows the same six steps, so you always know what is happening and what comes next."
       />
 
       <section className="section white">
@@ -50,14 +56,8 @@ export default function Process() {
             <div key={s.title} className="step">
               <div className="step-num">{i + 1}</div>
               <div>
-                <div className="plan-length">{s.time}</div>
                 <h2 className="h3">{s.title}</h2>
                 <p>{s.text}</p>
-                <ul className="ticks">
-                  {s.outputs.map((o) => (
-                    <li key={o}>{o}</li>
-                  ))}
-                </ul>
               </div>
             </div>
           ))}
@@ -66,7 +66,7 @@ export default function Process() {
 
       <section className="section">
         <div className="container">
-          <h2>Common questions</h2>
+          <h2>Frequently asked questions</h2>
           <div className="faq">
             {faqs.map((f) => (
               <details key={f.q}>

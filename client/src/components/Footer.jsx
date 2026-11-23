@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import company from '../data/company.js';
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
         <div className="footer-col wide">
           <img className="footer-logo" src="/logo-on-white.png" alt="TechSpire Solutions logo" width="72" height="72" />
           <div className="footer-brand">TechSpire Solutions</div>
-          <p>We create software, brands and platforms that help teams reach higher.</p>
+          <p>{company.motto}</p>
         </div>
         <div className="footer-col">
           <h4>Explore</h4>
@@ -20,10 +21,10 @@ export default function Footer() {
           <Link to="/contact">Contact</Link>
         </div>
         <div className="footer-col">
-          <h4>Studio</h4>
-          <span>Lucknow, India</span>
-          <span>7007387337</span>
-          <span>office@techspiresolutions.in</span>
+       <h4>Studio</h4>
+       <span>{company.address}</span>
+       <a href={company.phoneLink}>{company.phone}</a>
+       <a href={`mailto:${company.email}`}>{company.email}</a>
         </div>
         <div className="footer-col">
           <h4>Follow</h4>

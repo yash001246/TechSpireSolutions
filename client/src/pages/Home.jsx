@@ -2,17 +2,14 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Marquee from '../components/Marquee.jsx';
 import Stars from '../components/Stars.jsx';
-import useFeedback from '../hooks/useFeedback.js';
-import useProjects from '../hooks/useProjects.js';
 import ProjectCard from '../components/ProjectCard.jsx';
 import CallToAction from '../components/CallToAction.jsx';
+import useFeedback from '../hooks/useFeedback.js';
+import useProjects from '../hooks/useProjects.js';
+import company, { reasons } from '../data/company.js';
+import { serviceGroups } from '../data/services.js';
 
-const stats = [
-  { value: '120+', label: 'Products launched' },
-  { value: '9 yrs', label: 'Building software' },
-  { value: '40', label: 'Designers and engineers' },
-  { value: '18', label: 'Countries served' }
-];
+const heroWords = ['We', 'build', 'tech', 'that', 'climbs.'];
 
 export default function Home() {
   const { projects } = useProjects();
@@ -41,20 +38,20 @@ export default function Home() {
     <>
       <section className="hero" ref={heroRef}>
         <div className="container hero-inner">
-          <div className="eyebrow">Software and design studio</div>
+          <div className="eyebrow">{company.tagline}</div>
           <h1 className="hero-title" aria-label="We build tech that climbs.">
-            {['We', 'build', 'tech', 'that', 'climbs.'].map((word, i) => (
+            {heroWords.map((word, i) => (
               <span key={word} className="word" aria-hidden="true">
                 <span style={{ animationDelay: `${180 + i * 100}ms` }}>{word}</span>
               </span>
             ))}
           </h1>
           <p className="lead">
-            TechSpire Solutions designs and engineers websites, apps, cloud platforms and AI tools for teams that
-            want to ship something people use.
+            {company.name} is a dynamic and fast-growing technology company delivering comprehensive digital solutions
+            to businesses of all sizes.
           </p>
           <div className="btn-row">
-            <Link to="/work" className="btn btn-dark">See our work</Link>
+            <Link to="/services" className="btn btn-dark">Our services</Link>
             <Link to="/contact" className="btn btn-outline">Start a project</Link>
           </div>
         </div>
@@ -69,7 +66,7 @@ export default function Home() {
 
       <section className="section">
         <div className="container stats">
-          {stats.map((s) => (
+          {company.stats.map((s) => (
             <div key={s.label} className="stat">
               <div className="stat-value">{s.value}</div>
               <div className="muted">{s.label}</div>
@@ -79,6 +76,24 @@ export default function Home() {
       </section>
 
       <section className="section white">
+        <div className="container">
+          <div className="section-head">
+            <h2>What we do</h2>
+            <Link to="/services" className="link-arrow">All services</Link>
+          </div>
+          <div className="grid-3">
+            {serviceGroups.map((g) => (
+              <div key={g.title} className="line-card">
+                <h3>{g.title}</h3>
+                <p>{g.text}</p>
+                <div className="muted strong">{g.items.length} services</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="container">
           <div className="section-head">
             <h2>Recent work</h2>
@@ -92,17 +107,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section dark">
         <div className="container">
-          <div className="section-head">
-            <h2>What we do</h2>
-            <Link to="/services" className="link-arrow">All services</Link>
-          </div>
-          <div className="grid-4">
-            <div className="line-card"><h3>Strategy and design</h3><p>Research, interface design and brand systems that give a team something clear to build.</p></div>
-            <div className="line-card"><h3>Web and mobile</h3><p>Fast websites, web apps and mobile apps, tested before launch.</p></div>
-            <div className="line-card"><h3>Cloud and DevOps</h3><p>Migrations, pipelines and monitoring that keep products running.</p></div>
-            <div className="line-card"><h3>AI and data</h3><p>Assistants, search and analytics built on your own data.</p></div>
+          <div className="eyebrow light">Why choose TechSpire</div>
+          <h2>Built around your goals.</h2>
+          <div className="grid-3">
+            {reasons.map((r) => (
+              <div key={r.title} className="line-card light">
+                <h3>{r.title}</h3>
+                <p>{r.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -110,8 +125,8 @@ export default function Home() {
       <section className="section white">
         <div className="container">
           <div className="section-head">
-            <h2>Client feedback</h2>
-            <Link to="/feedback" className="link-arrow">Read all reviews</Link>
+            <h2>Testimonials</h2>
+            <Link to="/testimonials" className="link-arrow">Read all reviews</Link>
           </div>
           <div className="grid-3 reviews">
             {feedback.slice(0, 3).map((f) => (

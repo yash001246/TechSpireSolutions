@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function CallToAction({ title = "Let's build something tall.", button = 'Start a project' }) {
+export default function CallToAction({ title = "Let's build the future together.", button = 'Start a project' }) {
   return (
     <section className="cta">
       <div className="container">

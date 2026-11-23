@@ -1,4 +1,4 @@
-const items = ['Web', 'Mobile', 'Cloud', 'AI', 'Branding', 'Product', 'Design systems', 'Data'];
+const items = ['Web', 'Mobile', 'E-commerce', 'SaaS', 'Cloud', 'Cybersecurity', 'Design', 'Marketing'];
 
 // A looping strip of text. The list is rendered twice so the loop is seamless.
 export default function Marquee() {

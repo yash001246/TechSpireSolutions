@@ -1,55 +1,29 @@
 import PageHeader from '../components/PageHeader.jsx';
 import CallToAction from '../components/CallToAction.jsx';
-
-const services = [
-  {
-    title: 'Strategy and design',
-    text: 'We work out what to build and why, then design it so it is easy to use and easy to build.',
-    items: ['Product discovery workshops', 'User research and testing', 'UX and interface design', 'Brand identity and design systems']
-  },
-  {
-    title: 'Web and mobile engineering',
-    text: 'Fast, accessible websites and apps that feel right on every screen.',
-    items: ['Websites and web apps (React, Node.js)', 'iOS and Android apps', 'E-commerce and content platforms', 'APIs and integrations']
-  },
-  {
-    title: 'Cloud and DevOps',
-    text: 'Infrastructure that scales with your users and does not wake your team at 3 a.m.',
-    items: ['Cloud migration and setup', 'CI/CD pipelines', 'Monitoring and alerting', 'Security reviews and cost tuning']
-  },
-  {
-    title: 'AI and data',
-    text: 'Practical AI features and data tools built around your own information.',
-    items: ['AI assistants and search', 'Workflow automation', 'Dashboards and analytics', 'Data pipelines']
-  },
-  {
-    title: 'Support and growth',
-    text: 'After launch we stay close, fixing, measuring and improving.',
-    items: ['Maintenance and updates', 'Performance and SEO', 'A/B testing', 'Dedicated team retainers']
-  }
-];
-
-const stack = ['React', 'Node.js', 'Express', 'MongoDB', 'TypeScript', 'React Native', 'AWS', 'Docker', 'GitHub Actions', 'Figma'];
+import { serviceGroups, stack } from '../data/services.js';
 
 export default function Services() {
+  const total = serviceGroups.reduce((sum, g) => sum + g.items.length, 0);
+
   return (
     <>
       <PageHeader
         eyebrow="Services"
-        title="Everything you need to take a product from idea to launch."
-        intro="One team covers strategy, design, engineering and growth, so nothing gets lost between handoffs."
+        title={`${total} services. One team.`}
+        intro="Complete digital solutions under one roof: development, design and marketing, with 24/7 support after launch."
       />
 
       <section className="section white">
         <div className="container service-list">
-          {services.map((s) => (
-            <div key={s.title} className="service-row">
+          {serviceGroups.map((g) => (
+            <div key={g.title} className="service-row">
               <div>
-                <h2 className="h3">{s.title}</h2>
-                <p>{s.text}</p>
+                <h2 className="h3">{g.title}</h2>
+                <p>{g.text}</p>
+                <div className="plan-length service-count">{g.items.length} services</div>
               </div>
               <ul className="ticks">
-                {s.items.map((i) => (
+                {g.items.map((i) => (
                   <li key={i}>{i}</li>
                 ))}
               </ul>
@@ -60,12 +34,20 @@ export default function Services() {
 
       <section className="section">
         <div className="container">
-          <h2>Tools we use</h2>
-          <div className="filters">
-            {stack.map((t) => (
-              <span key={t} className="chip static">{t}</span>
+          <h2>Technologies we work with</h2>
+          <div className="grid-4">
+            {stack.map((s) => (
+              <div key={s.title} className="line-card">
+                <h3>{s.title}</h3>
+                <div className="filters tight">
+                  {s.items.map((t) => (
+                    <span key={t} className="chip static">{t}</span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
+          <p className="muted stack-note">and more, depending on what your project needs.</p>
         </div>
       </section>
 

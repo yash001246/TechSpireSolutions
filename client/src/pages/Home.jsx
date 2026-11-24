@@ -13,7 +13,7 @@ export default function Portfolio() {
   return (
     <>
       <PageHeader
-        eyebrow="Portfolio"
+        eyebrow="Home"
         title="Projects delivered across industries."
         intro="A look at the work we have delivered, the technology we use and the results our clients get."
       />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
 const links = [
+  { to: '/', label: 'Home', end: true },
   { to: '/work', label: 'Work' },
   { to: '/services', label: 'Services' },
   { to: '/portfolio', label: 'Portfolio' },
@@ -43,6 +44,7 @@ export default function Navbar() {
             <NavLink
               key={`${l.to}-${pathname}`}
               to={l.to}
+              end={l.end}
               style={{ '--i': i + 1 }}
               className={({ isActive }) => (isActive ? 'active' : '')}
               onClick={() => setOpen(false)}

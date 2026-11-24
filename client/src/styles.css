@@ -611,3 +611,74 @@ input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 4px rgba(61, 75, 2
 @media (prefers-reduced-motion: reduce) {
   .hero-media { animation: none !important; }
 }
+
+/* ---------- Page hero (all inner pages) ---------- */
+.page-header { padding: 64px 0 80px; border-bottom: 2px solid var(--ink); }
+.ph-grid { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.8;
+  background-image: radial-gradient(var(--line) 1.2px, transparent 1.2px); background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 90% at 20% 40%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 75% 90% at 20% 40%, #000 20%, transparent 75%); }
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 22px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.crumbs a:hover { color: var(--ink); opacity: 1; }
+.crumbs span:last-child { color: var(--ink); }
+.page-header .hero-eyebrow { margin-bottom: 22px; }
+.page-title { font-size: clamp(44px, 7.4vw, 104px); line-height: 0.98; max-width: 14ch; }
+.page-title .word { display: inline-block; overflow: hidden; vertical-align: top; margin-right: 0.22em; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.page-title .word > span { display: inline-block; transform: translateY(110%); animation: rise 0.95s cubic-bezier(0.2, 0.7, 0.1, 1) forwards; }
+.page-title .word.accent { color: var(--blue); }
+.page-header .container > h1 { animation: none; opacity: 1; }
+.page-header .lead { max-width: 36em; }
+@media (max-width: 760px) {
+  .page-header { padding: 44px 0 56px; }
+  .page-title { font-size: clamp(38px, 11vw, 64px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-title .word > span { animation: none !important; transform: none; }
+}
+
+/* ---------- Hero background for ALL pages (home + inner pages) ----------
+   Change the look by editing --hero-bg and the text colors in this block only. */
+.hero, .page-header {
+  --hero-bg:
+    radial-gradient(ellipse 55% 80% at 88% 15%, rgba(61, 75, 255, 0.55), transparent 62%),
+    radial-gradient(ellipse 45% 70% at 8% 105%, rgba(255, 106, 77, 0.28), transparent 62%),
+    linear-gradient(160deg, #0c1230 0%, #141b4d 100%);
+  --hero-text: #ffffff;
+  --hero-soft: #c9cfee;
+  --hero-line: rgba(255, 255, 255, 0.22);
+  background: var(--hero-bg);
+  color: var(--hero-text);
+}
+.page-header { border-bottom: 0; }
+
+/* dotted grid in light dots */
+.hero::before, .ph-grid { background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1.2px, transparent 1.2px); opacity: 1; }
+
+/* text */
+.hero h1, .page-header h1, .hero-title, .page-title { color: var(--hero-text); }
+.hero-title .word.accent, .page-title .word.accent { color: var(--sun); }
+.hero .lead, .page-header .lead { color: var(--hero-soft); }
+.hero-eyebrow { background: rgba(255, 255, 255, 0.08); border-color: var(--hero-line); color: var(--hero-text); }
+.crumbs { color: var(--hero-soft); }
+.crumbs a:hover { color: #fff; }
+.crumbs span:last-child { color: #fff; }
+
+/* buttons inside the hero */
+.hero .btn-dark { background: #fff; color: var(--ink); }
+.hero .btn-dark:hover { background: var(--sun); color: var(--ink); }
+.hero .btn-outline { border-color: #fff; color: #fff; }
+.hero .btn-outline:hover { background: #fff; color: var(--ink); }
+
+/* pills, stats, scroll cue */
+.hero-popular-label { color: var(--hero-soft); }
+.hero-pill { background: transparent; border-color: var(--hero-line); color: #fff; }
+.hero-pill:hover { background: #fff; border-color: #fff; color: var(--ink); }
+.hero-stats { border-top-color: var(--hero-line); }
+.hero-stat span { color: var(--hero-soft); }
+.scroll-cue { color: var(--hero-soft); }
+.scroll-line { background: linear-gradient(#fff, transparent); }
+
+/* home video card */
+.hero-video { border-color: #fff; box-shadow: 10px 10px 0 var(--sun); }
+.hero-media::after { background: var(--coral); }
+@media (max-width: 1000px) { .hero-video { box-shadow: 6px 6px 0 var(--sun); } }

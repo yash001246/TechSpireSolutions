@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PageHeader from '../components/PageHeader.jsx';
 import Stars from '../components/Stars.jsx';
+import LiveComments from '../components/LiveComments.jsx';
 import useFeedback from '../hooks/useFeedback.js';
 
 const initial = { name: '', role: '', company: '', project: '', rating: 0, quote: '' };
@@ -86,6 +87,8 @@ export default function Testimonials() {
           </div>
         </div>
       </section>
+
+      <LiveComments />
 
       <section className="section" id="share">
         <div className="container contact-grid">

@@ -1,142 +1,34 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Marquee from '../components/Marquee.jsx';
-import Stars from '../components/Stars.jsx';
-import ProjectCard from '../components/ProjectCard.jsx';
+import PageHeader from '../components/PageHeader.jsx';
 import CallToAction from '../components/CallToAction.jsx';
-import useFeedback from '../hooks/useFeedback.js';
 import useProjects from '../hooks/useProjects.js';
-import company, { reasons } from '../data/company.js';
-import { serviceGroups } from '../data/services.js';
+import company from '../data/company.js';
+import { stack } from '../data/services.js';
 
-const heroWords = ['We', 'build', 'tech', 'that', 'climbs.'];
-const heroLinks = [
-  { label: 'Web', to: '/services/web-development' },
-  { label: 'Mobile apps', to: '/services/mobile-app-development' },
-  { label: 'Cloud', to: '/services/cloud-devops' },
-  { label: 'UI/UX', to: '/services/ui-ux-design' },
-  { label: 'SEO', to: '/services/seo-optimization' }
-];
-
-export default function Home() {
+export default function Portfolio() {
   const { projects } = useProjects();
-  const feedback = useFeedback();
-  const heroRef = useRef(null);
-
-  // Moves the hero triangles slightly with the mouse.
-  useEffect(() => {
-    const hero = heroRef.current;
-    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!hero || !fine || reduced) return undefined;
-
-    const onMove = (e) => {
-      const rect = hero.getBoundingClientRect();
-      const mx = (e.clientX - rect.left) / rect.width - 0.5;
-      const my = (e.clientY - rect.top) / rect.height - 0.5;
-      hero.style.setProperty('--mx', mx.toFixed(3));
-      hero.style.setProperty('--my', my.toFixed(3));
-    };
-    hero.addEventListener('mousemove', onMove);
-    return () => hero.removeEventListener('mousemove', onMove);
-  }, []);
+  const [projectsStat, clientsStat] = [company.stats[1], company.stats[2]];
+  const hasSamples = projects.some((p) => p.sample);
 
   return (
     <>
-      <section className="hero" ref={heroRef}>
-        <div className="container hero-grid">
-        <div className="hero-inner">
-          <div className="eyebrow hero-eyebrow">
-            <span className="live-dot" aria-hidden="true" />
-            {company.tagline}
-          </div>
-          <h1 className="hero-title" aria-label="We build tech that climbs.">
-            {heroWords.map((word, i) => (
-              <span key={word} className={`word${i === heroWords.length - 1 ? ' accent' : ''}`} aria-hidden="true">
-                <span style={{ animationDelay: `${180 + i * 100}ms` }}>{word}</span>
-              </span>
-            ))}
-          </h1>
-          <p className="lead">
-            {company.name} is a dynamic and fast-growing technology company delivering comprehensive digital solutions
-            to businesses of all sizes.
-          </p>
-          <div className="btn-row">
-            <Link to="/services" className="btn btn-dark btn-arrow">Our services <span aria-hidden="true">&rarr;</span></Link>
-            <Link to="/contact" className="btn btn-outline">Start a project</Link>
-          </div>
-
-          <div className="hero-popular">
-            <span className="hero-popular-label">Popular</span>
-            {heroLinks.map((l) => (
-              <Link key={l.to} to={l.to} className="hero-pill">{l.label}</Link>
-            ))}
-          </div>
-
-          <div className="hero-stats">
-            {company.stats.slice(0, 3).map((s) => (
-              <div key={s.label} className="hero-stat">
-                <strong>{s.value}</strong>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero-media">
-          <video
-            className="hero-video"
-            src="/hero.mp4"
-            poster="/hero-poster.jpeg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            aria-label="Illustration of the TechSpire team building web, cloud and marketing solutions"
-          />
-        </div>
-      </div>
-
-        <div className="hero-art" aria-hidden="true">
-          <span className="tri t1" />
-          <span className="tri t2" />
-          <span className="tri t3" />
-        </div>
-
-        <div className="scroll-cue" aria-hidden="true">
-          <span className="scroll-line" />
-          Scroll
-        </div>
-      </section>
-
-      <Marquee />
-
-      <section className="section">
-        <div className="container stats">
-          {company.stats.map((s) => (
-            <div key={s.label} className="stat">
-              <div className="stat-value">{s.value}</div>
-              <div className="muted">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="Portfolio"
+        title="Projects delivered across industries."
+        intro="A look at the work we have delivered, the technology we use and the results our clients get."
+      />
 
       <section className="section white">
         <div className="container">
-          <div className="section-head">
-            <h2>What we do</h2>
-            <Link to="/services" className="link-arrow">All services</Link>
-          </div>
-          <div className="grid-3">
-            {serviceGroups.map((g) => (
-              <div key={g.title} className="line-card">
-                <h3>{g.title}</h3>
-                <p>{g.text}</p>
-                <div className="muted strong">{g.items.length} services</div>
-              </div>
-            ))}
+          <div className="stats">
+            <div className="stat">
+              <div className="stat-value">{projectsStat.value}</div>
+              <div className="muted">{projectsStat.label}</div>
+            </div>
+            <div className="stat">
+              <div className="stat-value">{clientsStat.value}</div>
+              <div className="muted">{clientsStat.label}</div>
+            </div>
           </div>
         </div>
       </section>
@@ -144,57 +36,78 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <h2>Recent work</h2>
-            <Link to="/work" className="link-arrow">View all projects</Link>
+            <h2>Case studies</h2>
+            <Link to="/work" className="link-arrow">Browse by category</Link>
           </div>
-          <div className="grid-2">
-            {projects.slice(0, 4).map((p) => (
-              <ProjectCard key={p.slug} project={p} />
-            ))}
+          <div className="case-grid">
+            {projects.map((p) => {
+              const hasImage = Boolean(p.image);
+              return (
+                <article key={p.slug} className="case-card">
+                  <div
+                    className={hasImage ? 'case-media has-image' : 'case-media'}
+                    style={{ background: p.color, color: hasImage ? '#fff' : p.textColor }}
+                  >
+                    {hasImage && <img className="case-img" src={p.image} alt={`${p.name} screenshot`} loading="lazy" />}
+                    {!hasImage && <span className="case-orb" style={{ background: p.accent }} aria-hidden="true" />}
+                    <span className="case-sector">{p.sector}</span>
+                    <span className="case-title-on">{p.name}</span>
+                  </div>
+
+                  <div className="case-body">
+                    <div className="case-meta">
+                      {p.tags.map((t) => (
+                        <span key={t} className="project-tag">{t}</span>
+                      ))}
+                      {p.year && <span className="case-year">{p.year}</span>}
+                    </div>
+                    <h3>{p.title}</h3>
+                    <p className="case-summary">{p.summary}</p>
+
+                    {p.results && p.results.length > 0 && (
+                      <ul className="case-results">
+                        {p.results.map((r) => (
+                          <li key={r}>{r}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {p.link && (
+                      <a className="project-link" href={p.link} target="_blank" rel="noopener noreferrer">
+                        Visit project <span aria-hidden="true"></span>
+                      </a>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
+          {hasSamples && (
+            <p className="muted stack-note">Some case studies shown here are samples. Replace them in src/data/projects.js.</p>
+          )}
         </div>
       </section>
 
       <section className="section dark">
         <div className="container">
-          <div className="eyebrow light">Why choose TechSpire</div>
-          <h2>Built around your goals.</h2>
-          <div className="grid-3">
-            {reasons.map((r) => (
-              <div key={r.title} className="line-card light">
-                <h3>{r.title}</h3>
-                <p>{r.text}</p>
+          <div className="eyebrow light">Technology stack</div>
+          <h2>What we build with</h2>
+          <div className="grid-4">
+            {stack.map((s) => (
+              <div key={s.title} className="line-card light">
+                <h3>{s.title}</h3>
+                <ul className="ticks">
+                  {s.items.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section white">
-        <div className="container">
-          <div className="section-head">
-            <h2>Testimonials</h2>
-            <Link to="/testimonials" className="link-arrow">Read all reviews</Link>
-          </div>
-          <div className="grid-3 reviews">
-            {feedback.slice(0, 3).map((f) => (
-              <figure key={f.name + f.company} className="review">
-                <Stars value={f.rating} />
-                <blockquote>{f.quote}</blockquote>
-                <figcaption>
-                  <span className="avatar" aria-hidden="true">{f.name.charAt(0)}</span>
-                  <span>
-                    <strong>{f.name}</strong>
-                    <span className="muted">{[f.role, f.company].filter(Boolean).join(', ')}</span>
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CallToAction />
+      <CallToAction title="Have a project in mind?" button="Tell us about it" />
     </>
   );
 }

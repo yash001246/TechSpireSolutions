@@ -1,14 +1,63 @@
-// Fallback copy of the sample projects, used when the API is not running.
-// Keep in sync with server/data/projects.js.
+// ============================================================================
+//  YOUR PROJECTS. Edit this file to change the Work page, the Portfolio page
+//  and "Recent work" on the Home page. No database or server change needed.
+//
+//  HOW TO ADD A PROJECT
+//  1. Copy the template below and paste it inside the list, above the samples.
+//  2. Fill in your own details.
+//  3. (Optional) Add a screenshot: put the image in  client/public/projects/
+//     and write its path in `image`, for example '/projects/my-project.jpg'.
+//     Use a landscape image, around 1200 x 800 px, under 300 KB.
+//  4. Delete the sample projects (the ones with  sample: true).
+//  5. git add . / git commit / git push, and Vercel updates the site.
+//
+//  TEMPLATE (copy this):
+//  {
+//    slug: 'my-project',            // unique, lowercase, no spaces (use - )
+//    name: 'Project Name',          // short name shown on the card
+//    sector: 'Retail',              // industry of the client
+//    year: '2025',                  // optional
+//    title: 'One line about what you built',
+//    summary: 'Two short sentences about the project and the problem it solved.',
+//    tags: ['Web', 'Cloud'],        // any words you like. The filter buttons are created from these.
+//    results: ['Result one', 'Result two', 'Result three'],
+//    link: 'https://client-website.com',   // optional: live website, or '' to hide the button
+//    image: '/projects/my-project.jpg',    // optional: screenshot, or '' to use the colour card
+//    color: '#3D4BFF', textColor: '#FFFFFF', accent: '#FFD66B'   // colour card (used when there is no image)
+//  },
+//
+//  Colours you can reuse:
+//    blue #3D4BFF (text #FFFFFF)   sun #FFD66B (text #0C1230)   coral #FF6A4D (text #0C1230)
+//    ink #0C1230 (text #FFFFFF)    mint #BFF0DC (text #0C1230)  mist #DDE1F2 (text #0C1230)
+// ============================================================================
+
 const projects = [
-  { slug: 'harborline', name: 'Harborline', sector: 'Logistics', title: 'Live freight tracking for a regional port operator', summary: 'A web platform that shows every container, vessel and truck on one live map.', tags: ['Web', 'Cloud'], color: '#3D4BFF', textColor: '#FFFFFF', accent: '#FFD66B', results: ['Booking time cut by 40%', 'Live data from 12 terminals', 'Launched in 14 weeks'] },
-  { slug: 'fieldnote', name: 'Fieldnote', sector: 'Field services', title: 'An offline-first inspection app for site engineers', summary: 'Engineers record inspections without a signal and sync when they are back online.', tags: ['Mobile'], color: '#FFD66B', textColor: '#0C1230', accent: '#FF6A4D', results: ['Paperwork cut by 70%', 'Works fully offline', 'Used on iOS and Android'] },
-  { slug: 'brightpath', name: 'Brightpath', sector: 'Education', title: 'A new onboarding journey for a learning platform', summary: 'A redesigned sign-up flow and brand refresh that helps learners start their first lesson sooner.', tags: ['Web', 'Branding'], color: '#FF6A4D', textColor: '#0C1230', accent: '#FFD66B', results: ['Sign-up completion up 28%', 'New design system', 'Tested with 60 learners'] },
-  { slug: 'quorum', name: 'Quorum', sector: 'Customer support', title: 'An AI assistant that drafts replies from your help center', summary: 'Support agents get a suggested answer with sources, and approve or edit it in one click.', tags: ['AI', 'Web'], color: '#0C1230', textColor: '#FFFFFF', accent: '#3D4BFF', results: ['First reply time cut by 35%', 'Every answer cites its source', 'Agent approval built in'] },
-  { slug: 'parcelbright', name: 'Parcelbright', sector: 'Delivery', title: 'A route and proof-of-delivery app for last-mile couriers', summary: 'Couriers get optimized routes, photo proof and instant customer updates.', tags: ['Mobile', 'Cloud'], color: '#BFF0DC', textColor: '#0C1230', accent: '#3D4BFF', results: ['Failed deliveries down 22%', 'Real-time customer tracking', 'Scales to 5,000 drivers'] },
-  { slug: 'tidemark', name: 'Tidemark', sector: 'Identity', title: 'Brand identity and launch site for a coastal food company', summary: 'A new name mark, packaging language and an online store for a family food brand.', tags: ['Branding', 'Web'], color: '#DDE1F2', textColor: '#0C1230', accent: '#FF6A4D', results: ['Full brand guidelines', 'Store live before the season', 'Packaging rolled out in 3 ranges'] },
-  { slug: 'skyvault', name: 'Skyvault', sector: 'Retail', title: 'Moving a retail group from data centers to the cloud', summary: 'A phased migration with no downtime during the holiday trading period.', tags: ['Cloud'], color: '#3D4BFF', textColor: '#FFFFFF', accent: '#BFF0DC', results: ['Hosting costs down 30%', 'Zero downtime cutover', 'Automated deployments'] },
-  { slug: 'pulse-atlas', name: 'Pulse Atlas', sector: 'Analytics', title: 'A real-time dashboard with natural-language questions', summary: 'Teams ask questions in plain English and get charts built from their own data.', tags: ['AI', 'Web'], color: '#FFD66B', textColor: '#0C1230', accent: '#3D4BFF', results: ['Reports built in seconds', 'Connects to 15 data sources', 'Role-based access'] }
+  // ---- Put your real projects here ----
+  {
+   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   name: 'Barton G',          // short name shown on the card
+   sector: 'Restaurants',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'Reserve Tables In Restaurants',
+   summary: 'Helps To Book Table For Family.',
+   tags: ['Web', 'Cloud'],        // any words you like. The filter buttons are created from these.
+    results: ['Restaurants', 'Event', 'Catering'],
+   link: "https://bartong.com/",   // optional: live website, or '' to hide the button
+   image: '/bartong.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   name: 'Hello Monday',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'An Product Based Website',
+   summary: 'Helps To Make Products And Grow Brands.',
+   tags: ['Web', 'Cloud'],        // any words you like. The filter buttons are created from these.
+    results: ['Product', 'Branding', 'Exeperince'],
+   link: "https://hellomonday.com/",   // optional: live website, or '' to hide the button
+   image: '/hellomonday.png',    // optional: screenshot, or '' to use the colour card
+   },
 ];
 
 export default projects;

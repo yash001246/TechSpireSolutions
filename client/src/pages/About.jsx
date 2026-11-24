@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader.jsx';
 import CallToAction from '../components/CallToAction.jsx';
 import company, { reasons, comparison } from '../data/company.js';
+import founder from '../data/founder.js';
 
 const initials = company.founder
   .split(' ')
@@ -9,6 +11,8 @@ const initials = company.founder
   .join('');
 
 export default function About() {
+  const [photoFailed, setPhotoFailed] = useState(false);
+
   return (
     <>
       <PageHeader
@@ -92,21 +96,39 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <h2>Leadership</h2>
+      <section className="section founder" id="founder">
+        <div className="container founder-grid">
+          <div className="founder-photo">
+            {founder.photo && !photoFailed ? (
+              <img src={founder.photo} alt={company.founder} onError={() => setPhotoFailed(true)} />
+            ) : (
+              <span className="founder-initials" aria-hidden="true">{initials}</span>
+            )}
+            <span className="founder-badge">Founder</span>
           </div>
-          <div className="grid-4">
-            <div className="person">
-              <div className="person-art" style={{ background: 'var(--sun)' }}>
-                <span className="person-shape" aria-hidden="true" />
-                <span className="person-initials" aria-hidden="true">{initials}</span>
-              </div>
-              <h3>{company.founder}</h3>
-              <div className="strong">{company.founderRole}</div>
-              <div className="muted">Since {company.founded}</div>
-            </div>
+
+          <div className="founder-copy">
+            <div className="eyebrow">Meet the founder</div>
+            <h2>{company.founder}</h2>
+            <p className="founder-role">{company.founderRole}, {company.name}</p>
+
+            {founder.bio.map((p) => (
+              <p key={p} className="founder-bio">{p}</p>
+            ))}
+
+            <blockquote className="founder-quote">
+              <span className="founder-quote-label">His philosophy</span>
+              {founder.philosophy}
+            </blockquote>
+
+            <dl className="founder-facts">
+              {founder.facts.map((f) => (
+                <div key={f.label}>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>

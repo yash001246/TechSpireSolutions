@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="TechSpire Solutions designs and engineers websites, apps, cloud platforms and AI tools." />
+    <meta name="color-scheme" content="light dark" />
+   <script>
+   (function () {
+    try {
+      var t = localStorage.getItem('ts-theme');
+      var p = localStorage.getItem('ts-palette');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-palette', p || 'indigo');
+    } catch (e) {}
+  })();
+</script>
     <title>TechSpire Solutions</title>
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -11,9 +23,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+  rel="stylesheet"
+ />
   </head>
   <body>
     <div id="root"></div>

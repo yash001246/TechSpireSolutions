@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import PageHeader from '../components/PageHeader.jsx';
 import CallToAction from '../components/CallToAction.jsx';
 import useProjects from '../hooks/useProjects.js';
 import company from '../data/company.js';
 import { stack } from '../data/services.js';
+
+const heroWords = ['We', 'build', 'tech', 'that', 'climbs.'];
 
 // Home page services (edit text freely)
 const homeServices = [
@@ -45,11 +46,43 @@ export default function Home() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Home"
-        title="Projects delivered across industries."
-        intro="A look at the work we have delivered, the technology we use and the results our clients get."
-      />
+      {/* Hero: light style + video, no triangles */}
+      <section className="hero">
+        <div className="container hero-grid">
+          <div className="hero-inner">
+            <div className="eyebrow">{company.tagline}</div>
+            <h1 className="hero-title" aria-label="We build tech that climbs.">
+              {heroWords.map((word, i) => (
+                <span key={word} className="word" aria-hidden="true">
+                  <span style={{ animationDelay: `${180 + i * 100}ms` }}>{word}</span>
+                </span>
+              ))}
+            </h1>
+            <p className="lead">
+              {company.name} is a dynamic and fast-growing technology company delivering comprehensive digital
+              solutions to businesses of all sizes.
+            </p>
+            <div className="btn-row">
+              <Link to="/services" className="btn btn-dark">Our services</Link>
+              <Link to="/contact" className="btn btn-outline">Start a project</Link>
+            </div>
+          </div>
+
+          <div className="hero-media">
+            <video
+              className="hero-video"
+              src="/hero.mp4"
+              poster="/hero-poster.jpg"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-label="Illustration of the TechSpire team building web, cloud and marketing solutions"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Company summary */}
       <section className="section white">
@@ -58,9 +91,9 @@ export default function Home() {
           <h2>A creative technology studio for growing businesses.</h2>
           <p className="muted">
             TechSpire Solutions designs and builds fast, modern websites and web products for
-            growing businesses. We combine clear strategy, thoughtful design and turn ideas into digital experiences that look
-            sharp, load quickly and convert visitors into customers. From first sketch to launch
-            and beyond, we work as an extension of your team.
+            growing businesses. We combine clear strategy and thoughtful design to turn ideas into
+            digital experiences that look sharp, load quickly and convert visitors into customers.
+            From first sketch to launch and beyond, we work as an extension of your team.
           </p>
           <Link to="/about" className="link-arrow">More about us</Link>
         </div>
@@ -84,6 +117,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats */}
       <section className="section white">
         <div className="container">
           <div className="stats">
@@ -99,6 +133,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Case studies */}
       <section className="section">
         <div className="container">
           <div className="section-head">
@@ -140,7 +175,7 @@ export default function Home() {
 
                     {p.link && (
                       <a className="project-link" href={p.link} target="_blank" rel="noopener noreferrer">
-                        Visit project <span aria-hidden="true"></span>
+                        Visit project <span aria-hidden="true">↗</span>
                       </a>
                     )}
                   </div>
@@ -154,6 +189,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Technology stack */}
       <section className="section dark">
         <div className="container">
           <div className="eyebrow light">Technology stack</div>

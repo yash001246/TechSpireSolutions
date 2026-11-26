@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
+import ThemeSwitcher from './ThemeSwitcher.jsx';
 
 const links = [
   { to: '/', label: 'Home', end: true },
@@ -31,14 +32,6 @@ export default function Navbar() {
           <img className="logo-img" src="/logo.png" alt="" width="44" height="44" />
           <span className="mask"><span className="mask-in">TechSpire</span></span>
         </Link>
-        <button
-          className="menu-toggle"
-          aria-expanded={open}
-          aria-controls="site-nav"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? 'Close' : 'Menu'}
-        </button>
         <nav id="site-nav" className={open ? 'nav open' : 'nav'}>
           {links.map((l, i) => (
             <NavLink
@@ -53,6 +46,17 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
+        <div className="nav-right">
+          <ThemeSwitcher />
+          <button
+            className="menu-toggle"
+            aria-expanded={open}
+            aria-controls="site-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? 'Close' : 'Menu'}
+          </button>
+        </div>
       </div>
     </header>
   );

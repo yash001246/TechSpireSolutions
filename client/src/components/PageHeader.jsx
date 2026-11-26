@@ -7,7 +7,7 @@ export default function PageHeader({ eyebrow, title, intro }) {
   return (
     <section className="page-header">
       <span className="ph-grid" aria-hidden="true" />
-      <span className="ph-rings" aria-hidden="true" />
+      <span className="ph-blobs" aria-hidden="true" />
       <div className="container">
         <nav className="crumbs" aria-label="Breadcrumb">
           <Link to="/">Home</Link>

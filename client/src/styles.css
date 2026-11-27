@@ -922,3 +922,115 @@ h4 { letter-spacing: 0.08em; }
   .navbar, .nav a, .nav-cta, .nav-cta span, .burger, .burger::before, .burger::after { transition: none; }
   .nav.open { animation: none; }
 }
+
+/* ============================================================
+   Polish pass: navbar extras + site-wide refinements
+   ============================================================ */
+
+/* Navbar: progress bar, auto-hide, full-screen mobile menu */
+.navbar { transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.1, 1), box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease; }
+.navbar.hide { transform: translateY(-100%); }
+.nav-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; z-index: 6; transform-origin: left; transform: scaleX(0); pointer-events: none;
+  background: linear-gradient(90deg, var(--blue), var(--coral), var(--sun)); }
+body.menu-open { overflow: hidden; }
+@media (max-width: 1100px) {
+  .nav.open { max-height: calc(100vh - 96px); overflow-y: auto; }
+  .nav.open a { border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent); border-radius: 0; }
+  .nav.open a.active { border-radius: 12px; border-bottom-color: transparent; }
+  .nav.open a:last-of-type { border-bottom: 0; }
+}
+
+/* Back to top */
+.to-top { position: fixed; left: max(20px, env(safe-area-inset-left, 0px)); bottom: max(20px, env(safe-area-inset-bottom, 0px)); z-index: 40; width: 48px; height: 48px; display: grid; place-items: center; padding: 0;
+  border: 1px solid var(--line); border-radius: 50%; background: var(--white); color: var(--ink); box-shadow: 0 12px 26px -12px rgba(12, 18, 48, 0.5);
+  opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.25s ease, color 0.25s ease; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+.to-top svg { width: 20px; height: 20px; }
+
+/* Headings: eyebrow gets a leading bar, section titles a short accent rule */
+.eyebrow { display: inline-flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ''; width: 28px; height: 3px; border-radius: 3px; background: currentColor; }
+.hero-eyebrow::before, .live-badge::before { display: none; }
+.section-head h2 { position: relative; padding-bottom: 14px; }
+.section-head h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 56px; height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--coral)); }
+
+/* Cards: rounder, lifted on hover */
+.line-card { padding: 24px 22px 26px; border: 1px solid var(--line); border-top-width: 4px; border-radius: 16px; background: var(--white); }
+.section.white .line-card { background: var(--bg); }
+.section.dark .line-card { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.12); border-top-color: var(--sun); }
+.line-card:hover { transform: translateY(-6px); box-shadow: 0 24px 46px -28px rgba(12, 18, 48, 0.5); }
+.review, .plan, .case-card, .compare-col { border-radius: 18px; }
+.stat { padding: 8px 0 8px 20px; }
+
+/* Buttons: soft sheen sweep on hover */
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn::after { content: ''; position: absolute; inset: 0; z-index: -1; transform: translateX(-110%) skewX(-18deg); background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent); transition: transform 0.7s ease; }
+.btn:hover::after { transform: translateX(110%) skewX(-18deg); }
+.link-arrow { transition: color 0.25s ease, border-color 0.25s ease, letter-spacing 0.25s ease; }
+.link-arrow:hover { opacity: 1; color: var(--blue); border-bottom-color: var(--blue); }
+
+/* Hero video gently floats */
+.hero-video { animation: heroFloat 7s ease-in-out infinite; }
+@keyframes heroFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* Marquee, CTA and footer */
+.marquee { border-block: 1px solid rgba(255, 255, 255, 0.08); }
+.cta { position: relative; overflow: hidden; }
+.cta::before { content: ''; position: absolute; right: -120px; top: -120px; width: 420px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.22), transparent 70%); pointer-events: none; }
+.cta .container { position: relative; }
+.footer { background-image: radial-gradient(ellipse 60% 100% at 90% 0%, color-mix(in srgb, var(--blue) 28%, transparent), transparent 70%); }
+.footer-col a { position: relative; }
+.footer-col h4 { letter-spacing: 0.12em; }
+
+/* Forms and focus */
+input, select, textarea { border-radius: 12px; }
+.btn:focus-visible, .nav a:focus-visible, .nav-cta:focus-visible, .to-top:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--blue) 45%, var(--line)); border-radius: 999px; border: 3px solid var(--bg); }
+
+@media (max-width: 760px) {
+  .to-top { width: 44px; height: 44px; }
+  .section-head h2::after { width: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { animation: none; }
+  .navbar, .to-top, .btn::after { transition: none; }
+}
+
+/* ============================================================
+   Footer redesign
+   ============================================================ */
+.footer { padding-top: 0; border-top: 0; position: relative; }
+.footer::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--coral), var(--sun)); }
+.footer-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 40px; margin-top: 64px; padding: clamp(28px, 4vw, 44px);
+  border-radius: 24px; background: linear-gradient(135deg, var(--blue), var(--blue-deep, var(--blue))); color: #fff; position: relative; overflow: hidden; }
+.footer-cta::after { content: ''; position: absolute; right: -90px; top: -90px; width: 300px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, 0.25), transparent 70%); pointer-events: none; }
+.footer-cta > * { position: relative; z-index: 1; }
+.footer-cta h3 { font-size: clamp(26px, 3.4vw, 40px); color: #fff; }
+.footer-cta p { margin-top: 8px; color: rgba(255, 255, 255, 0.85); }
+.footer-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-ghost { border-color: rgba(255, 255, 255, 0.6); color: #fff; background: transparent; }
+.btn-ghost:hover { background: #fff; color: var(--ink); }
+
+.footer-inner { padding-top: 56px; gap: 40px 48px; }
+.footer-col { gap: 10px; }
+.footer-col.wide { max-width: 360px; gap: 14px; }
+.footer-brandlink { display: inline-flex; align-items: center; gap: 12px; width: fit-content; }
+.footer-brandlink:hover { opacity: 1; }
+.footer-logo { width: 56px; height: 56px; margin: 0; }
+.footer-badge { display: inline-flex; align-items: center; gap: 10px; width: fit-content; padding: 8px 14px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 999px; font-size: 13px; font-weight: 600; color: #fff; }
+.footer-badge i { width: 8px; height: 8px; border-radius: 50%; background: #1fbf75; box-shadow: 0 0 0 0 rgba(31, 191, 117, 0.6); animation: pulseDot 1.8s ease-out infinite; }
+.footer-founder { color: #fff; font-weight: 700; font-size: 17px; }
+.footer-col a { color: #c9cedd; }
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom { margin-top: 48px; padding-block: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-bottom-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 24px; font-size: 14px; }
+.footer-bottom-inner span:last-child { color: #8f97b8; }
+@media (max-width: 760px) {
+  .footer-cta { margin-top: 48px; border-radius: 20px; }
+  .footer-inner { padding-top: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .footer-badge i { animation: none; } }

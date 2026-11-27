@@ -7,6 +7,7 @@ const explore = [
   { to: '/services', label: 'Services' },
   { to: '/portfolio', label: 'Portfolio' },
   { to: '/process', label: 'Process' },
+  { to: '/why-choose-us', label: 'Why Us' },
   { to: '/about', label: 'About' },
   { to: '/testimonials', label: 'Testimonials' },
   { to: '/contact', label: 'Contact' }

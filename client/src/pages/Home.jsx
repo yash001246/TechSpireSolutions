@@ -1,52 +1,30 @@
 import { Link } from 'react-router-dom';
-import CallToAction from '../components/CallToAction.jsx';
+import Stars from '../components/Stars.jsx';
+import useFeedback from '../hooks/useFeedback.js';
 import useProjects from '../hooks/useProjects.js';
-import company from '../data/company.js';
-import { stack } from '../data/services.js';
+import company, { reasons } from '../data/company.js';
+import { getThumb } from '../utils/media.js';
 
 const heroWords = ['We', 'build', 'tech', 'that', 'climbs.'];
 
-// Home page services (edit text freely)
-const homeServices = [
-  {
-    title: 'Web Design & UI/UX',
-    text: 'Clean, brand-led interfaces that are easy to use on every screen.'
-  },
-  {
-    title: 'Full-Stack Web Development',
-    text: 'Scalable MERN applications, from business websites to custom platforms.'
-  },
-  {
-    title: 'E-commerce & Booking Solutions',
-    text: 'Online stores, secure payments and booking flows that are simple to manage.'
-  },
-  {
-    title: 'SEO & Performance Optimization',
-    text: 'Fast load times, clean structure and search-friendly content that gets found.'
-  },
-  {
-    title: 'Maintenance & Support',
-    text: 'Hosting, updates and ongoing improvements after launch.'
-  }
+// Core services shown on the home page (edit text freely)
+const coreServices = [
+  { title: 'Web Design & UI/UX', text: 'Clean, brand-led interfaces that are easy to use on every screen.' },
+  { title: 'Full-Stack Web Development', text: 'Scalable MERN applications, from business websites to custom platforms.' },
+  { title: 'E-commerce & Booking Solutions', text: 'Online stores, secure payments and booking flows that are simple to manage.' },
+  { title: 'SEO & Performance Optimization', text: 'Fast load times, clean structure and search-friendly content that gets found.' },
+  { title: 'AI, Cloud & Automation', text: 'Smart tools, cloud hosting and automation that save time and cut costs.' },
+  { title: 'Maintenance & Support', text: 'Hosting, updates and ongoing improvements after launch.' }
 ];
-
-// REPLACE the quotes below with REAL client feedback (name, role, company).
-// Entries that still start with "REPLACE" are hidden automatically,
-// so placeholder text never shows on the live site.
-const homeTestimonials = [
-  { quote: 'REPLACE WITH REAL CLIENT QUOTE #1', name: 'Client Name', role: 'Role, Company' },
-  { quote: 'REPLACE WITH REAL CLIENT QUOTE #2', name: 'Client Name', role: 'Role, Company' },
-  { quote: 'REPLACE WITH REAL CLIENT QUOTE #3', name: 'Client Name', role: 'Role, Company' }
-].filter((t) => !t.quote.startsWith('REPLACE'));
 
 export default function Home() {
   const { projects } = useProjects();
-  const [projectsStat, clientsStat] = [company.stats[1], company.stats[2]];
-  const hasSamples = projects.some((p) => p.sample);
+  const feedback = useFeedback();
+  const [, projectsStat, clientsStat] = company.stats;
 
   return (
     <>
-      {/* Hero: light style + video, no triangles */}
+      {/* 1. Hero */}
       <section className="hero">
         <div className="container hero-grid">
           <div className="hero-inner">
@@ -84,30 +62,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Company summary */}
+      {/* 2. Company about */}
       <section className="section white">
-        <div className="container">
-          <div className="eyebrow">About TechSpire Solutions</div>
-          <h2>A creative technology studio for growing businesses.</h2>
-          <p className="muted">
-            TechSpire Solutions designs and builds fast, modern websites and web products for
-            growing businesses. We combine clear strategy and thoughtful design to turn ideas into
-            digital experiences that look sharp, load quickly and convert visitors into customers.
-            From first sketch to launch and beyond, we work as an extension of your team.
-          </p>
-          <Link to="/about" className="link-arrow">More about us</Link>
+        <div className="container split">
+          <div>
+            <div className="eyebrow">About {company.name}</div>
+            <h2>A creative technology studio for growing businesses.</h2>
+          </div>
+          <div className="prose">
+            <p>
+              {company.name} designs and builds fast, modern websites, apps and digital products. We combine clear
+              strategy and thoughtful design to turn ideas into experiences that look sharp, load quickly and convert
+              visitors into customers.
+            </p>
+            <p>
+              Founded in {company.founded} by {company.founder}, we work with clients in India and abroad, and act as an
+              extension of your team from the first sketch to launch and beyond.
+            </p>
+            <div className="home-facts">
+              <div className="stat">
+                <div className="stat-value">{projectsStat.value}</div>
+                <div className="muted">{projectsStat.label}</div>
+              </div>
+              <div className="stat">
+                <div className="stat-value">{clientsStat.value}</div>
+                <div className="muted">{clientsStat.label}</div>
+              </div>
+            </div>
+            <Link to="/about" className="link-arrow">More about us</Link>
+          </div>
         </div>
       </section>
 
-      {/* Services */}
+      {/* 3. Core services */}
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <h2>Our services</h2>
-            <Link to="/services" className="link-arrow">All services</Link>
+            <h2>Core services</h2>
+            <Link to="/services" className="link-arrow">View all 26+ services</Link>
           </div>
-          <div className="grid-4">
-            {homeServices.map((s) => (
+          <div className="grid-3 home-grid">
+            {coreServices.map((s) => (
               <div key={s.title} className="line-card">
                 <h3>{s.title}</h3>
                 <p className="muted">{s.text}</p>
@@ -117,44 +112,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="section white">
+      {/* 4. Why choose us */}
+      <section className="section dark">
         <div className="container">
-          <div className="stats">
-            <div className="stat">
-              <div className="stat-value">{projectsStat.value}</div>
-              <div className="muted">{projectsStat.label}</div>
+          <div className="section-head">
+            <div>
+              <div className="eyebrow light">Why choose us</div>
+              <h2>Built around your goals.</h2>
             </div>
-            <div className="stat">
-              <div className="stat-value">{clientsStat.value}</div>
-              <div className="muted">{clientsStat.label}</div>
-            </div>
+            <Link to="/why-choose-us" className="link-arrow">Read more</Link>
+          </div>
+          <div className="grid-3 home-grid">
+            {reasons.map((r) => (
+              <div key={r.title} className="line-card light">
+                <h3>{r.title}</h3>
+                <p>{r.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Case studies */}
+      {/* 5. Showcase portfolio */}
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <h2>Case studies</h2>
-            <Link to="/work" className="link-arrow">Browse by category</Link>
+            <h2>Portfolio showcase</h2>
+            <Link to="/portfolio" className="link-arrow">See full portfolio</Link>
           </div>
           <div className="case-grid">
-            {projects.map((p) => {
-              const hasImage = Boolean(p.image);
+            {projects.slice(0, 3).map((p) => {
+              const thumb = getThumb(p);
+              const hasImage = Boolean(thumb);
               return (
                 <article key={p.slug} className="case-card">
                   <div
                     className={hasImage ? 'case-media has-image' : 'case-media'}
                     style={{ background: p.color, color: hasImage ? '#fff' : p.textColor }}
                   >
-                    {hasImage && <img className="case-img" src={p.image} alt={`${p.name} screenshot`} loading="lazy" />}
+                    {hasImage && <img className="case-img" src={thumb} alt={`${p.name} preview`} loading="lazy" />}
                     {!hasImage && <span className="case-orb" style={{ background: p.accent }} aria-hidden="true" />}
                     <span className="case-sector">{p.sector}</span>
                     <span className="case-title-on">{p.name}</span>
                   </div>
-
                   <div className="case-body">
                     <div className="case-meta">
                       {p.tags.map((t) => (
@@ -164,15 +164,6 @@ export default function Home() {
                     </div>
                     <h3>{p.title}</h3>
                     <p className="case-summary">{p.summary}</p>
-
-                    {p.results && p.results.length > 0 && (
-                      <ul className="case-results">
-                        {p.results.map((r) => (
-                          <li key={r}>{r}</li>
-                        ))}
-                      </ul>
-                    )}
-
                     {p.link && (
                       <a className="project-link" href={p.link} target="_blank" rel="noopener noreferrer">
                         Visit project <span aria-hidden="true">↗</span>
@@ -183,56 +174,37 @@ export default function Home() {
               );
             })}
           </div>
-          {hasSamples && (
-            <p className="muted stack-note">Some case studies shown here are samples. Replace them in src/data/projects.js.</p>
-          )}
         </div>
       </section>
 
-      {/* Technology stack */}
-      <section className="section dark">
-        <div className="container">
-          <div className="eyebrow light">Technology stack</div>
-          <h2>What we build with</h2>
-          <div className="grid-4">
-            {stack.map((s) => (
-              <div key={s.title} className="line-card light">
-                <h3>{s.title}</h3>
-                <ul className="ticks">
-                  {s.items.map((t) => (
-                    <li key={t}>{t}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
+      {/* 6. Reviews */}
       <section className="section white">
         <div className="container">
           <div className="section-head">
             <h2>What our clients say</h2>
-            <Link to="/testimonials" className="link-arrow">Read all testimonials</Link>
+            <Link to="/testimonials" className="link-arrow">Read all reviews</Link>
           </div>
-          {homeTestimonials.length > 0 && (
-            <div className="grid-4">
-              {homeTestimonials.map((t) => (
-                <figure key={t.name + t.quote} className="line-card">
-                  <blockquote>“{t.quote}”</blockquote>
+          {feedback.length > 0 ? (
+            <div className="grid-3 reviews">
+              {feedback.slice(0, 3).map((f) => (
+                <figure key={f.name + f.company} className="review">
+                  <Stars value={f.rating} />
+                  <blockquote>{f.quote}</blockquote>
                   <figcaption>
-                    <strong>{t.name}</strong>
-                    <div className="muted">{t.role}</div>
+                    <span className="avatar" aria-hidden="true">{f.name.charAt(0)}</span>
+                    <span>
+                      <strong>{f.name}</strong>
+                      <span className="muted">{[f.role, f.company].filter(Boolean).join(', ')}</span>
+                    </span>
                   </figcaption>
                 </figure>
               ))}
             </div>
+          ) : (
+            <p className="muted">Reviews from our clients will appear here soon.</p>
           )}
         </div>
       </section>
-
-      <CallToAction title="Have a project in mind?" button="Tell us about it" />
     </>
   );
 }

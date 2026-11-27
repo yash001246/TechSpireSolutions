@@ -34,7 +34,7 @@
 const projects = [
   // ---- Put your real projects here ----
   {
-   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   slug: 'barton-g',            // unique, lowercase, no spaces (use - )
    name: 'Barton G',          // short name shown on the card
    sector: 'Restaurants',              // industry of the client
    //year: '2025',                  // optional
@@ -47,7 +47,7 @@ const projects = [
    },
 
    {
-   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   slug: 'hello-monday',            // unique, lowercase, no spaces (use - )
    name: 'Hello Monday',          // short name shown on the card
    sector: 'web devlopment',              // industry of the client
    //year: '2025',                  // optional
@@ -60,7 +60,7 @@ const projects = [
    },
 
    {
-   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   slug: 'makro-pro',            // unique, lowercase, no spaces (use - )
    name: 'Makro PRO',          // short name shown on the card
    sector: 'Application',              // industry of the client
    //year: '2025',                  // optional
@@ -73,7 +73,7 @@ const projects = [
    },
 
    {
-   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   slug: 'walomi-android',            // unique, lowercase, no spaces (use - )
    name: 'Walomi (Android)',          // short name shown on the card
    sector: 'Application',              // industry of the client
    //year: '2025',                  // optional
@@ -86,7 +86,7 @@ const projects = [
    },
 
    {
-   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   slug: 'yolo-matrix',            // unique, lowercase, no spaces (use - )
    name: 'Yolo Matrix',          // short name shown on the card
    sector: 'web devlopment',              // industry of the client
    //year: '2025',                  // optional
@@ -99,7 +99,7 @@ const projects = [
    },
 
    {
-   slug: 'my-project',            // unique, lowercase, no spaces (use - )
+   slug: 'learn-hub',            // unique, lowercase, no spaces (use - )
    name: 'LearnHub',          // short name shown on the card
    sector: 'web devlopment',              // industry of the client
    //year: '2025',                  // optional
@@ -109,6 +109,113 @@ const projects = [
     results: ['Learing', 'e-Learing', 'courses'],
    link: "https://learnhub.com/",   // optional: live website, or '' to hide the button
    image: '/learnhub.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+    slug: 'brand-reel',
+    category: 'Video Editing',              // ye line zaroori hai
+    name: 'Brand Reel',
+    sector: 'Fashion',
+    title: 'A 30-second launch video',
+    summary: 'Fast cuts, motion text and sound design for Instagram and YouTube.',
+    tags: ['Reel', 'Motion'],
+    results: ['16:9 and 9:16 versions', 'Colour graded', 'Sound mixed'],
+    video: '/groovy.mp4',               // public folder mein jahan file hai wahi path
+    image: '/groovy.png',         // cover image (recommended)
+    vertical: false,                        // Reel / Shorts ho to true
+    link: '',
+    color: '#FF6A4D', textColor: '#0C1230', accent: '#FFD66B'
+  },
+
+  {
+   slug: 'melyssa-griffin',            // unique, lowercase, no spaces (use - )
+   name: 'Melyssa Griffin',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'creative entrepreneur and guide',
+   summary: 'Work for an creative entrepreneur and guide for soulful business owners.',
+   tags: ['Web', 'React', 'Hosting'],        // any words you like. The filter buttons are created from these.
+    results: ['entrepreneur', 'guide', 'soulful business owners'],
+   link: "https://melyssagriffin.com/",   // optional: live website, or '' to hide the button
+   image: '/griffin.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+   slug: 'serai-collective',            // unique, lowercase, no spaces (use - )
+   name: 'Serai Collective',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'An Ecommerce Platform',
+   summary: 'An Ecommerce Platform for international client',
+   tags: ['Web', 'ecommerce', 'Hosting'],        // any words you like. The filter buttons are created from these.
+    results: ['web', 'ecommerce', 'product'],
+   link: "https://seraicollective.com/",   // optional: live website, or '' to hide the button
+   image: '/serai.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+   slug: 'yooy-drinks',            // unique, lowercase, no spaces (use - )
+   name: 'YOOY',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'YOOY Drinks',
+   summary: 'YOOY Drinks website for an international client..',
+   tags: ['Web', 'ecommerce', 'Hosting', 'Shopify'],        // any words you like. The filter buttons are created from these.
+    results: ['product', 'ecommerce', 'Shopify'],
+   link: "https://yooydrinks.com/",   // optional: live website, or '' to hide the button
+   image: '/yooy.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+   slug: 'quick-14',            // unique, lowercase, no spaces (use - )
+   name: 'quick14studio',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'An web design Studio',
+   summary: 'Web design studio ehich use figma and work on UI/UX.',
+   tags: ['Web', 'React', 'Hosting', 'UI/UX'],        // any words you like. The filter buttons are created from these.
+    results: ['Web Designs', 'Host', 'UI/UX'],
+   link: "https://www.quick14studio.com/",   // optional: live website, or '' to hide the button
+   image: '/quick.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+   slug: 'next-on-scene',            // unique, lowercase, no spaces (use - )
+   name: 'Next On Scene',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'Personal Brand & PR Agency',
+   summary: 'Personal Brand & PR Agency for brands and influncer.',
+   tags: ['Web', 'React', 'Hosting'],        // any words you like. The filter buttons are created from these.
+    results: ['web', 'page', 'host'],
+   link: "https://nextonscene.com/",   // optional: live website, or '' to hide the button
+   image: '/next.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+   slug: 'home-plunge',            // unique, lowercase, no spaces (use - )
+   name: 'Home Plunge',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'For home appliances',
+   summary: 'Web platform for home appliances and iteans which are used at home.',
+   tags: ['Web', 'React', 'Hosting', 'Wordpress'],        // any words you like. The filter buttons are created from these.
+    results: ['web', 'ecommerce', 'Host'],
+   link: "https://www.thehomeplunge.com/",   // optional: live website, or '' to hide the button
+   image: '/home.png',    // optional: screenshot, or '' to use the colour card
+   },
+
+   {
+   slug: 'tim-allen',            // unique, lowercase, no spaces (use - )
+   name: 'Tim allen properties',          // short name shown on the card
+   sector: 'web devlopment',              // industry of the client
+   //year: '2025',                  // optional
+   title: 'Properties & Real Estate platform',
+   summary: 'Web platform for Properties & Real Estate platform.',
+   tags: ['Web', 'Hosting', 'Wordpress'],        // any words you like. The filter buttons are created from these.
+    results: ['web', 'Real Estate', 'Properties', 'Wordpress'],
+   link: "https://timallenproperties.com/",   // optional: live website, or '' to hide the button
+   image: '/tim.png',    // optional: screenshot, or '' to use the colour card
    },
 ];
 

@@ -15,6 +15,7 @@ import Testimonials from './pages/Testimonials.jsx';
 import NotFound from './pages/NotFound.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
 import ServiceDetail from './pages/ServiceDetail.jsx';
+import WhyChooseUs from './pages/WhyChooseUs.jsx';
 
 export default function App() {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ export default function App() {
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
